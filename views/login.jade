@@ -1,0 +1,16 @@
+extends layout
+
+block content
+.
+	<div>
+		<h1>Login</h1>
+		<form action="/controllers/authenticate-controller" method="POST">  
+		 
+		Email: <input type="text" name="email">
+		Password: <input type="password" name="password">
+		   
+		<input type="submit" value="Submit">  
+		</form>
+	</div>
+	 
+
