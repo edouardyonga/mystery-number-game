@@ -3,13 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// var cons = require('consolidate');
 
 var connection = require('./config');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/login');
-var registerRouter = require('./routes/register');
 
 var app = express();
 
@@ -18,9 +17,9 @@ var registerController=require('./controllers/register-controller');
 
 
 // view engine setup
+// app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,12 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
-
-// test = app.use('/login', loginRouter);
-// if (test) {console.log(test)}
-
 
 /*API's route to handle login and registration */
 app.post('/api/register',registerController.register);
